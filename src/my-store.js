@@ -1,14 +1,3 @@
-// import { create } from "zustand";
-
-// const useMyStore = create((res) => {
-//   return {
-//     products: [],
-//     loading: false,
-//   };
-// });
-// export default useMyStore;
-
-
 import { create } from "zustand";
 
 const useMyStore = create((set) => ({
@@ -17,7 +6,21 @@ const useMyStore = create((set) => ({
   cart: [],
 
   addToCart: (item) =>
-    set((state) => ({ cart: [...state.cart, item] })),
+    set((state) => {
+      const existingItem = state.cart.find((cartItem) => cartItem.id === item.id);
+
+      if (existingItem) {
+        return {
+          cart: state.cart.map((cartItem) =>
+            cartItem.id === item.id
+              ? { ...cartItem, count: cartItem.count + 1 }
+              : cartItem
+          ),
+        };
+      } else {
+        return { cart: [...state.cart, { ...item, count: 1 }] };
+      }
+    }),
 }));
 
 export default useMyStore;
