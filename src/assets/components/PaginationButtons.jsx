@@ -83,6 +83,7 @@ function CatalogPage() {
               onClick={() => setPagination(page)}
               key={page}
             >
+              
               {page}
             </Button>
           );
