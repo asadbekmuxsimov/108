@@ -6,9 +6,8 @@ import ShoppingCart02Icon from "../imgs/shopping-cart-02-stroke-rounded (1)";
 
 function ProduktCard({ item }) {
   const [messageApi, contextHolder] = message.useMessage();
+  const { products, addToCart } = useMyStore();
   const state = useMyStore();
-  
-
 
   function onAdd(item) {
     const bormi = state.savatcha.find(
@@ -33,13 +32,18 @@ function ProduktCard({ item }) {
   return (
     <div
       key={item.id}
-      className="bg-white shadow-md rounded-xl p-4  items-center transition transform hover:scale-101 hover:shadow-lg"
+      className=" w-[250px] flex flex-col bg-white shadow-md rounded-xl p-4  items-center transition transform hover:scale-101 hover:shadow-lg"
     >
-      <Link to={`/product/${item.id}`}>
+      <Link to={`/inside/${item.id}`} onClick={() =>{
+        window.scrollTo({
+          behavior: "smooth",
+          top: 0
+        })
+      }}>
         <img
           className="w-52 h-52 object-contain rounded-lg"
           src={item.image}
-          alt="Product"
+          alt="Product" 
         />
       </Link>
 
@@ -49,34 +53,25 @@ function ProduktCard({ item }) {
 
       <div className="flex justify-between items-center w-full mt-3">
         <p className="text-black  bg-gray-100 mt-2  text-[13px] px-3 py-2 rounded-xl">
-          {item.axiom_monthly_price} 
+          {item.axiom_monthly_price}
         </p>
         {item.discount_value && (
           <p className="line-through opacity-65 text-black">
-            {item.discount_value.toLocaleString("ru-RU")} 
+            {item.discount_value.toLocaleString("ru-RU")}
           </p>
         )}
       </div>
       {contextHolder}
       <div className="flex justify-between mt-7">
         <div>
-          <p className="font-bold">
+          <p className="font-bold mr-32 mb-10">
             {item.sale_price.toLocaleString("ru-RU")} So'm
           </p>
         </div>
-        {/* <Button
-          onClick={() => {
-            success();
-            onAdd(item);
-          }}
-        //   color="yellow"
-        >
-          <ShoppingCart02Icon />
-        </Button> */}
         <ShoppingCart02Icon
-              className="cursor-pointer relative top-0 left-0"
-              onClick={() => addToCart(item)}
-            />
+          className="cursor-pointer relative top-8 left-0"
+          onClick={() => addToCart(item)}
+        />
       </div>
     </div>
   );

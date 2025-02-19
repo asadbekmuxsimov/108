@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import useMyStore from "../../my-store.js";
-import Menu from "../imgs/menu-01-stroke-rounded (3)";
-import Cancel01Icon from "../imgs/cancel-01-stroke-rounded (1)";
+import Menu from "../imgs/menu-01-stroke-rounded (3).js";
+import Cancel01Icon from "../imgs/cancel-01-stroke-rounded (1).js";
 import Nav_tagi from "./Nav_tagi.jsx";
-import { Link } from "react-router";
+import { Link, Links } from "react-router";
 import Savatcha from "./Savatcha.jsx";
 
 function Navbar() {
@@ -35,16 +35,16 @@ function Navbar() {
         </div>
 
         <div className="flex items-center justify-between mt-5">
-          <Link to={'/'}>
+          <Link to={"/"}>
             <h1 className="text-2xl font-bold text-gray-800 cursor-pointer">
               texnomart*
             </h1>
           </Link>
           <div className="flex bg-[#fbc100] px-4 py-2 rounded-md">
-            <button className="flex gap-3 cursor-pointer" onClick={open}>
-              {!isOpen ? <Menu /> : <Cancel01Icon />}
-              <span>Katalog</span>
-            </button>
+              <button className="flex gap-3 cursor-pointer" onClick={open}>
+                {!isOpen ? <Menu /> : <Cancel01Icon />}
+                <span>Katalog</span>
+              </button>
           </div>
           <div className="flex-grow mx-4">
             <input
@@ -68,7 +68,7 @@ function Navbar() {
 
             <div
               className="relative flex flex-col items-center cursor-pointer"
-              onMouseEnter={() => setIsHovered(true)}
+              // onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onClick={() => setSavatchaModal(true)}
             >
@@ -100,7 +100,13 @@ function Navbar() {
 
         <Nav_tagi />
       </div>
-      {savatchaModal && <Savatcha cart={cart} addToCart={addToCart} onClose={() => setSavatchaModal(false)} />}
+      {savatchaModal && (
+        <Savatcha
+          cart={cart}
+          addToCart={addToCart}
+          onClose={() => setSavatchaModal(false)}
+        />
+      )}
     </div>
   );
 }
