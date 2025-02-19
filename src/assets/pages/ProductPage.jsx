@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Aksessuarlar from "../components/acsesuar";
+import Aksessuarlar from "../components/Acsesuar";
 
 function ProductPage() {
   const { id } = useParams();
